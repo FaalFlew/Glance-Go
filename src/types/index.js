@@ -9,4 +9,10 @@
  * @property {string} utcOffset
  */
 
+/**
+ * @typedef {Object} Coordinates
+ * @property {number} lat
+ * @property {number} lng
+ */
+
 export {};
