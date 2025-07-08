@@ -1,11 +1,10 @@
 import { createApp } from "vue";
+import App from "./App.vue";
 
-// Import Leaflet's CSS directly for reliability
+// Import Leaflet's CSS directly
 import "leaflet/dist/leaflet.css";
 
-// Import our global styles
+// Import global styles
 import "./style.css";
-
-import App from "./App.vue";
 
 createApp(App).mount("#app");

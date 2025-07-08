@@ -1,0 +1,65 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Prevent scrollbars and ensure a stable, full-screen layout */
+  html,
+  body,
+  #app {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    @apply bg-slate-900 text-slate-100 antialiased;
+  }
+}
+
+/* Custom transitions for UI components */
+.panel-fade-enter-active,
+.panel-fade-leave-active {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.panel-fade-enter-from,
+.panel-fade-leave-to {
+  opacity: 0;
+  transform: translateY(-1rem);
+}
+
+.modal-fade-enter-active,
+.modal-fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.modal-fade-enter-from,
+.modal-fade-leave-to {
+  opacity: 0;
+}
+
+.menu-fade-enter-active,
+.menu-fade-leave-active {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.menu-fade-enter-from,
+.menu-fade-leave-to {
+  opacity: 0;
+  transform: translateX(-20px);
+}
+
+.view-fade-enter-active,
+.view-fade-leave-active {
+  transition: opacity 0.2s ease;
+}
+
+.view-fade-enter-from,
+.view-fade-leave-to {
+  opacity: 0;
+}
