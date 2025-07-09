@@ -10,20 +10,11 @@
 import { onMounted, onUnmounted, ref, markRaw, watch } from "vue";
 import L from "leaflet";
 
-// --- UPDATED MAP THEMES ---
 const TILE_URLS = {
   night:
     "https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png",
-  // NEW: A beautiful, full-color map for the daytime
   day: "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}",
 };
-
-const ATTRIBUTIONS = {
-  night:
-    '© <a href="https://stadiamaps.com/">Stadia Maps</a>, © <a href="https://openmaptiles.org/">OpenMapTiles</a> © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
-  day: "Tiles © Esri — Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012",
-};
-// ----------------------------
 
 const props = defineProps({
   theme: {
@@ -49,8 +40,6 @@ onMounted(() => {
   );
   L.control.zoom({ position: "bottomright" }).addTo(map);
 
-  // --- NEW TRANSITION LOGIC ---
-  // Create both tile layers
   lightLayer = L.tileLayer(TILE_URLS.day, {
     maxZoom: 20,
     attribution: ATTRIBUTIONS.day,
@@ -60,11 +49,9 @@ onMounted(() => {
     attribution: ATTRIBUTIONS.night,
   });
 
-  // Add BOTH layers to the map, but set the day layer's opacity to 0 initially.
   darkLayer.addTo(map);
   lightLayer.addTo(map);
   lightLayer.setOpacity(0);
-  // ----------------------------
 
   map.on("click", (e) => {
     const { lat, lng } = e.latlng;
@@ -78,16 +65,15 @@ onMounted(() => {
   });
 });
 
-// WATCH for changes and smoothly fade opacity
 watch(
   () => props.theme,
   (newTheme) => {
     if (!lightLayer || !darkLayer) return;
 
     if (newTheme === "day") {
-      lightLayer.setOpacity(1); // Fade in the day layer
+      lightLayer.setOpacity(1);
     } else {
-      lightLayer.setOpacity(0); // Fade out the day layer
+      lightLayer.setOpacity(0);
     }
   }
 );
@@ -101,7 +87,6 @@ onUnmounted(() => {
 </script>
 
 <style>
-/* REVISED: Target the layer panes for a guaranteed smooth cross-fade. */
 .leaflet-pane .leaflet-tile-pane {
   transition: opacity 0.8s ease-in-out !important;
 }
@@ -111,5 +96,5 @@ onUnmounted(() => {
 }
 .leaflet-control-attribution a {
   color: #555;
-} /* Darker color for better visibility on both maps */
+}
 </style>
