@@ -16,6 +16,12 @@ const TILE_URLS = {
   day: "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}",
 };
 
+const ATTRIBUTIONS = {
+  night:
+    '© <a href="https://stadiamaps.com/">Stadia Maps</a>, © <a href="https://openmaptiles.org/">OpenMapTiles</a> © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
+  day: "Tiles © Esri — Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012",
+};
+
 const props = defineProps({
   theme: {
     type: String,
@@ -54,7 +60,7 @@ onMounted(() => {
   lightLayer.setOpacity(0);
 
   map.on("click", (e) => {
-    const { lat, lng } = e.latlng;
+    const { lat, lng } = e.latlng.wrap();
     emit("map-click", { lat, lng });
     map.flyTo(e.latlng, map.getZoom());
     if (marker) {
