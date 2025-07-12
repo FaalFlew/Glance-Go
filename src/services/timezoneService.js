@@ -40,7 +40,7 @@ class TimezoneService {
       abbreviation: data.abbreviation,
       utcOffset: `UTC${remoteOffsetHours >= 0 ? "+" : ""}${remoteOffsetHours}`,
       timeDifference: formatTimeDifference(remoteOffsetHours, localOffsetHours),
-      currentTime: new Date(data.formatted),
+      currentTime: new Date(data.timestamp * 1000),
     };
   }
 }
