@@ -24,6 +24,14 @@
  */
 
 /**
+ * @typedef {Object} ForecastDay
+ * @property {Date} date
+ * @property {number} maxTemp
+ * @property {number} minTemp
+ * @property {string} iconUrl
+ */
+
+/**
  * @typedef {Object} Coordinates
  * @property {number} lat
  * @property {number} lng
