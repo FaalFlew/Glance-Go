@@ -24,6 +24,28 @@
  */
 
 /**
+ * @typedef {Object} CurrencyInfo
+ * @property {string} name
+ * @property {string} code
+ * @property {string} symbol
+ */
+
+/**
+ * @typedef {Object} CountryFacts
+ * @property {CurrencyInfo} currency
+ * @property {string} capital
+ * @property {number} population
+ * @property {string} region
+ * @property {string} subregion
+ * @property {string} languages
+ * @property {string} callingCode
+ * @property {string} drivingSide
+ * @property {string} tld
+ * @property {string} demonym
+ * @property {string} vehicleSign
+ */
+
+/**
  * @typedef {Object} ForecastDay
  * @property {Date} date
  * @property {number} maxTemp
@@ -32,7 +54,24 @@
  */
 
 /**
+ * @typedef {Object} NewsArticle
+ * @property {string} title
+ * @property {string} url
+ * @property {Object} source
+ * @property {string} source.name
+ * @property {string} publishedAt
+ */
+
+/**
  * @typedef {Object} Coordinates
+ * @property {number} lat
+ * @property {number} lng
+ */
+
+/**
+ * @typedef {Object} FavoriteLocation
+ * @property {string} locationName
+ * @property {string} timezone
  * @property {number} lat
  * @property {number} lng
  */

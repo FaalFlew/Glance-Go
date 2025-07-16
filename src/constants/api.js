@@ -1,4 +1,3 @@
-// API Configuration and Endpoints
 export const API_ENDPOINTS = {
   NOMINATIM: "https://nominatim.openstreetmap.org/reverse",
   SUNRISE_SUNSET: "https://api.open-meteo.com/v1/forecast",

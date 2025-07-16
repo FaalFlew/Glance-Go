@@ -1,4 +1,3 @@
-// Map configuration constants
 export const MAP_THEMES = {
   NIGHT: {
     name: "night",
@@ -21,5 +20,5 @@ export const MAP_CONFIG = {
   DEFAULT_ZOOM: 3,
   MAX_ZOOM: 20,
   ZOOM_CONTROL_POSITION: "bottomright",
-  TRANSITION_DURATION: 800, // milliseconds
+  TRANSITION_DURATION: 800,
 };
