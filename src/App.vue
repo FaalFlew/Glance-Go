@@ -5,12 +5,19 @@
       :is-transitioning="isMapTransitioning"
       @map-click="handleMapClick"
     />
+
+    <TimeDisplay
+      :data="locationData"
+      :loading="isLocationLoading"
+      :error="locationError"
+    />
   </div>
 </template>
 
 <script setup>
 import { ref } from "vue";
 import MapComponent from "@/components/MapComponent.vue";
+import TimeDisplay from "@/components/TimeDisplay.vue";
 
 const theme = ref("night");
 
