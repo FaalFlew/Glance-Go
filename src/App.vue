@@ -8,20 +8,32 @@
 
     <TimeDisplay
       :data="locationData"
-      :loading="isLocationLoading"
-      :error="locationError"
+      :forecast="forecastData"
+      :loading="isLoading"
+      :error="error"
     />
   </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, watch, computed } from "vue";
 import MapComponent from "@/components/MapComponent.vue";
 import TimeDisplay from "@/components/TimeDisplay.vue";
+import { useWorldTime } from "./composables/useWorldTime.js";
+const { locationData, forecastData, isLoading, error, fetchLocationData } =
+  useWorldTime();
+const currentMapTheme = ref("night");
+const lastClickedCoords = ref(null);
+const handleMapClick = ({ lat, lng }) => {
+  lastClickedCoords.value = { lat, lng };
+  fetchLocationData(lat, lng);
+};
 
-const theme = ref("night");
-
-const handleMapClick = ({ lat, lng }) => {};
+watch(locationData, (newData) => {
+  if (newData) {
+    currentMapTheme.value = newData.isDay ? "day" : "night";
+  }
+});
 </script>
 
 <style>
