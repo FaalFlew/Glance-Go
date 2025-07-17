@@ -1,0 +1,1092 @@
+{
+  "AF": {
+    "plugs": ["C", "F"],
+    "voltage": "220V",
+    "frequency": "50Hz"
+  },
+  "AL": {
+    "plugs": ["C", "F"],
+    "voltage": "230V",
+    "frequency": "50Hz"
+  },
+  "DZ": {
+    "plugs": ["C", "F"],
+    "voltage": "230V",
+    "frequency": "50Hz"
+  },
+  "AS": {
+    "plugs": ["A", "B", "F", "I"],
+    "voltage": "120V",
+    "frequency": "60Hz"
+  },
+  "AD": {
+    "plugs": ["C", "F"],
+    "voltage": "230V",
+    "frequency": "50Hz"
+  },
+  "AO": {
+    "plugs": ["C"],
+    "voltage": "220V",
+    "frequency": "50Hz"
+  },
+  "AI": {
+    "plugs": ["A"],
+    "voltage": "110V",
+    "frequency": "60Hz"
+  },
+  "AG": {
+    "plugs": ["A", "B"],
+    "voltage": "230V",
+    "frequency": "60Hz"
+  },
+  "AR": {
+    "plugs": ["C", "I"],
+    "voltage": "220V",
+    "frequency": "50Hz"
+  },
+  "AM": {
+    "plugs": ["C", "F"],
+    "voltage": "230V",
+    "frequency": "50Hz"
+  },
+  "AW": {
+    "plugs": ["A", "B", "F"],
+    "voltage": "127V",
+    "frequency": "60Hz"
+  },
+  "AU": {
+    "plugs": ["I"],
+    "voltage": "230V",
+    "frequency": "50Hz"
+  },
+  "AT": {
+    "plugs": ["C", "F"],
+    "voltage": "230V",
+    "frequency": "50Hz"
+  },
+  "AZ": {
+    "plugs": ["C", "F"],
+    "voltage": "220V",
+    "frequency": "50Hz"
+  },
+  "BS": {
+    "plugs": ["A", "B"],
+    "voltage": "120V",
+    "frequency": "60Hz"
+  },
+  "BH": {
+    "plugs": ["G"],
+    "voltage": "230V",
+    "frequency": "50Hz"
+  },
+  "BD": {
+    "plugs": ["C", "D", "G", "K"],
+    "voltage": "220V",
+    "frequency": "50Hz"
+  },
+  "BB": {
+    "plugs": ["A", "B"],
+    "voltage": "115V",
+    "frequency": "50Hz"
+  },
+  "BY": {
+    "plugs": ["C", "F"],
+    "voltage": "220V",
+    "frequency": "50Hz"
+  },
+  "BE": {
+    "plugs": ["C", "E"],
+    "voltage": "230V",
+    "frequency": "50Hz"
+  },
+  "BZ": {
+    "plugs": ["A", "B", "G"],
+    "voltage": "110V,220V",
+    "frequency": "60Hz"
+  },
+  "BJ": {
+    "plugs": ["C", "E"],
+    "voltage": "220V",
+    "frequency": "50Hz"
+  },
+  "BM": {
+    "plugs": ["A", "B"],
+    "voltage": "120V",
+    "frequency": "60Hz"
+  },
+  "BT": {
+    "plugs": ["C", "D", "F", "G", "M"],
+    "voltage": "230V",
+    "frequency": "50Hz"
+  },
+  "BO": {
+    "plugs": ["A", "C"],
+    "voltage": "115V,230V",
+    "frequency": "50Hz"
+  },
+  "BA": {
+    "plugs": ["C", "F"],
+    "voltage": "230V",
+    "frequency": "50Hz"
+  },
+  "BW": {
+    "plugs": ["D", "G", "M"],
+    "voltage": "230V",
+    "frequency": "50Hz"
+  },
+  "BR": {
+    "plugs": ["C", "N"],
+    "voltage": "127V,220V",
+    "frequency": "60Hz"
+  },
+  "VG": {
+    "plugs": ["A", "B"],
+    "voltage": "110V",
+    "frequency": "60Hz"
+  },
+  "BN": {
+    "plugs": ["G"],
+    "voltage": "240V",
+    "frequency": "50Hz"
+  },
+  "BG": {
+    "plugs": ["C", "F"],
+    "voltage": "230V",
+    "frequency": "50Hz"
+  },
+  "BF": {
+    "plugs": ["C", "E"],
+    "voltage": "220V",
+    "frequency": "50Hz"
+  },
+  "BI": {
+    "plugs": ["C", "E"],
+    "voltage": "220V",
+    "frequency": "50Hz"
+  },
+  "KH": {
+    "plugs": ["A", "C", "G"],
+    "voltage": "230V",
+    "frequency": "50Hz"
+  },
+  "CM": {
+    "plugs": ["C", "E"],
+    "voltage": "220V",
+    "frequency": "50Hz"
+  },
+  "CA": {
+    "plugs": ["A", "B"],
+    "voltage": "120V",
+    "frequency": "60Hz"
+  },
+  "CV": {
+    "plugs": ["C", "F"],
+    "voltage": "220V",
+    "frequency": "50ÂHz"
+  },
+  "KY": {
+    "plugs": ["A", "B"],
+    "voltage": "120V",
+    "frequency": "60Hz"
+  },
+  "CF": {
+    "plugs": ["C", "E"],
+    "voltage": "220V",
+    "frequency": "50Hz"
+  },
+  "TD": {
+    "plugs": ["C", "D", "E", "F"],
+    "voltage": "220V",
+    "frequency": "50Hz"
+  },
+  "CL": {
+    "plugs": ["C", "L"],
+    "voltage": "220V",
+    "frequency": "50Hz"
+  },
+  "CN": {
+    "plugs": ["A", "C", "I"],
+    "voltage": "220V",
+    "frequency": "50Hz"
+  },
+  "CO": {
+    "plugs": ["A", "B"],
+    "voltage": "110V",
+    "frequency": "60Hz"
+  },
+  "KM": {
+    "plugs": ["C", "E"],
+    "voltage": "220V",
+    "frequency": "50Hz"
+  },
+  "CG": {
+    "plugs": ["C", "E"],
+    "voltage": "230V",
+    "frequency": "50Hz"
+  },
+  "CD": {
+    "plugs": ["C", "D", "E"],
+    "voltage": "220V",
+    "frequency": "50Hz"
+  },
+  "CK": {
+    "plugs": ["I"],
+    "voltage": "240V",
+    "frequency": "50Hz"
+  },
+  "CR": {
+    "plugs": ["A", "B"],
+    "voltage": "120V",
+    "frequency": "60Hz"
+  },
+  "CI": {
+    "plugs": ["C", "E"],
+    "voltage": "230V",
+    "frequency": "50ÂHz"
+  },
+  "HR": {
+    "plugs": ["C", "F"],
+    "voltage": "230V",
+    "frequency": "50Hz"
+  },
+  "CU": {
+    "plugs": ["A", "B"],
+    "voltage": "110V",
+    "frequency": "60Hz"
+  },
+  "CY": {
+    "plugs": ["G"],
+    "voltage": "240V",
+    "frequency": "50ÂHz"
+  },
+  "CZ": {
+    "plugs": ["C", "E"],
+    "voltage": "230V",
+    "frequency": "50Hz"
+  },
+  "DK": {
+    "plugs": ["C", "F", "E", "K"],
+    "voltage": "230V",
+    "frequency": "50Hz"
+  },
+  "DJ": {
+    "plugs": ["C", "E"],
+    "voltage": "220V",
+    "frequency": "50Hz"
+  },
+  "DM": {
+    "plugs": ["D", "G"],
+    "voltage": "230V",
+    "frequency": "50ÂHz"
+  },
+  "DO": {
+    "plugs": ["A", "B"],
+    "voltage": "110V",
+    "frequency": "60ÂHz"
+  },
+  "EC": {
+    "plugs": ["A", "B"],
+    "voltage": "120V",
+    "frequency": "60Hz"
+  },
+  "EG": {
+    "plugs": ["C", "F"],
+    "voltage": "220V",
+    "frequency": "50Hz"
+  },
+  "SV": {
+    "plugs": ["A", "B"],
+    "voltage": "115V",
+    "frequency": "60Hz"
+  },
+  "GQ": {
+    "plugs": ["C", "E"],
+    "voltage": "220V",
+    "frequency": "50Hz"
+  },
+  "ER": {
+    "plugs": ["C", "L"],
+    "voltage": "230V",
+    "frequency": "50Hz"
+  },
+  "EE": {
+    "plugs": ["C", "F"],
+    "voltage": "230V",
+    "frequency": "50Hz"
+  },
+  "ET": {
+    "plugs": ["C", "E", "F", "L"],
+    "voltage": "220V",
+    "frequency": "50Hz"
+  },
+  "FK": {
+    "plugs": ["G"],
+    "voltage": "240V",
+    "frequency": "50Hz"
+  },
+  "FO": {
+    "plugs": ["C", "F", "E", "K"],
+    "voltage": "230V",
+    "frequency": "50Hz"
+  },
+  "FJ": {
+    "plugs": ["I"],
+    "voltage": "240V",
+    "frequency": "50Hz"
+  },
+  "FI": {
+    "plugs": ["C", "F"],
+    "voltage": "230V",
+    "frequency": "50Hz"
+  },
+  "FR": {
+    "plugs": ["C", "E"],
+    "voltage": "230V",
+    "frequency": "50Hz"
+  },
+  "GF": {
+    "plugs": ["C", "D", "E"],
+    "voltage": "220V",
+    "frequency": "50Hz"
+  },
+  "GA": {
+    "plugs": ["C"],
+    "voltage": "220V",
+    "frequency": "50Hz"
+  },
+  "GM": {
+    "plugs": ["G"],
+    "voltage": "230V",
+    "frequency": "50Hz"
+  },
+  "GE": {
+    "plugs": ["C", "F"],
+    "voltage": "220V",
+    "frequency": "50Hz"
+  },
+  "DE": {
+    "plugs": ["C", "F"],
+    "voltage": "230V",
+    "frequency": "50Hz"
+  },
+  "GH": {
+    "plugs": ["D", "G"],
+    "voltage": "230V",
+    "frequency": "50Hz"
+  },
+  "GI": {
+    "plugs": ["C", "G"],
+    "voltage": "240V",
+    "frequency": "50Hz"
+  },
+  "GR": {
+    "plugs": ["C", "F"],
+    "voltage": "230V",
+    "frequency": "50Hz"
+  },
+  "GL": {
+    "plugs": ["C", "F", "E", "K"],
+    "voltage": "230V",
+    "frequency": "50Hz"
+  },
+  "GD": {
+    "plugs": ["G"],
+    "voltage": "230V",
+    "frequency": "50Hz"
+  },
+  "GP": {
+    "plugs": ["C", "D", "E"],
+    "voltage": "230V",
+    "frequency": "50ÂHz"
+  },
+  "GU": {
+    "plugs": ["A", "B"],
+    "voltage": "110V",
+    "frequency": "60ÂHz"
+  },
+  "GT": {
+    "plugs": ["A", "B"],
+    "voltage": "120V",
+    "frequency": "60ÂHz"
+  },
+  "GN": {
+    "plugs": ["C", "F", "K"],
+    "voltage": "220V",
+    "frequency": "50ÂHz"
+  },
+  "GW": {
+    "plugs": ["C"],
+    "voltage": "220V",
+    "frequency": "50Hz"
+  },
+  "GY": {
+    "plugs": ["A", "B", "D", "G"],
+    "voltage": "240V",
+    "frequency": "60Hz"
+  },
+  "HT": {
+    "plugs": ["A", "B"],
+    "voltage": "110V",
+    "frequency": "60ÂHz"
+  },
+  "HN": {
+    "plugs": ["A", "B"],
+    "voltage": "110V",
+    "frequency": "60ÂHz"
+  },
+  "HK": {
+    "plugs": ["G", "D"],
+    "voltage": "220V",
+    "frequency": "50Hz"
+  },
+  "HU": {
+    "plugs": ["C", "F"],
+    "voltage": "230V",
+    "frequency": "50ÂHz"
+  },
+  "IS": {
+    "plugs": ["C", "F"],
+    "voltage": "230V",
+    "frequency": "50ÂHz"
+  },
+  "IN": {
+    "plugs": ["C", "D", "M"],
+    "voltage": "230V",
+    "frequency": "50ÂHz"
+  },
+  "ID": {
+    "plugs": ["C", "F"],
+    "voltage": "220V110V",
+    "frequency": "50Hz"
+  },
+  "IR": {
+    "plugs": ["C", "F"],
+    "voltage": "220V",
+    "frequency": "50ÂHz"
+  },
+  "IQ": {
+    "plugs": ["C", "D", "G"],
+    "voltage": "230V",
+    "frequency": "50ÂHz"
+  },
+  "IE": {
+    "plugs": ["G"],
+    "voltage": "230V",
+    "frequency": "50Hz"
+  },
+  "IM": {
+    "plugs": ["C", "G"],
+    "voltage": "240V",
+    "frequency": "50ÂHz"
+  },
+  "IL": {
+    "plugs": ["C", "H", "M"],
+    "voltage": "230V",
+    "frequency": "50Hz"
+  },
+  "IT": {
+    "plugs": ["C", "F", "L"],
+    "voltage": "230V",
+    "frequency": "50ÂHz"
+  },
+  "JM": {
+    "plugs": ["A", "B"],
+    "voltage": "110V",
+    "frequency": "50Hz"
+  },
+  "JP": {
+    "plugs": ["A", "B"],
+    "voltage": "100V",
+    "frequency": "50Hz,60Hz"
+  },
+  "JO": {
+    "plugs": ["B", "C", "D", "F", "G", "J"],
+    "voltage": "230V",
+    "frequency": "50ÂHz"
+  },
+  "KZ": {
+    "plugs": ["C", "F"],
+    "voltage": "220V",
+    "frequency": "50ÂHz"
+  },
+  "KE": {
+    "plugs": ["G"],
+    "voltage": "240V",
+    "frequency": "50Hz"
+  },
+  "KI": {
+    "plugs": ["I"],
+    "voltage": "240V",
+    "frequency": "50ÂHz"
+  },
+  "KP": {
+    "plugs": ["A", "C", "F"],
+    "voltage": "220V,110V",
+    "frequency": "50Hz,60Hz"
+  },
+  "KR": {
+    "plugs": ["C", "F"],
+    "voltage": "220V",
+    "frequency": "60Hz"
+  },
+  "KW": {
+    "plugs": ["C", "G"],
+    "voltage": "240V",
+    "frequency": "50ÂHz"
+  },
+  "KG": {
+    "plugs": ["C", "F"],
+    "voltage": "220V",
+    "frequency": "50ÂHz"
+  },
+  "LA": {
+    "plugs": ["A", "B", "C", "E", "F"],
+    "voltage": "230V",
+    "frequency": "50ÂHz"
+  },
+  "LV": {
+    "plugs": ["C", "F"],
+    "voltage": "230V",
+    "frequency": "50ÂHz"
+  },
+  "LB": {
+    "plugs": ["A", "B", "C", "D", "G"],
+    "voltage": "220V",
+    "frequency": "50Hz"
+  },
+  "LS": {
+    "plugs": ["M"],
+    "voltage": "220V",
+    "frequency": "50ÂHz"
+  },
+  "LR": {
+    "plugs": ["A", "B", "C", "E", "F"],
+    "voltage": "120V,220V",
+    "frequency": "50Hz,60Hz"
+  },
+  "LY": {
+    "plugs": ["C", "D", "F", "L"],
+    "voltage": "127V,230V",
+    "frequency": "50ÂHz"
+  },
+  "LI": {
+    "plugs": ["C", "J"],
+    "voltage": "230V",
+    "frequency": "50ÂHz"
+  },
+  "LT": {
+    "plugs": ["C", "F"],
+    "voltage": "220V",
+    "frequency": "50ÂHz"
+  },
+  "LU": {
+    "plugs": ["C", "F"],
+    "voltage": "230V",
+    "frequency": "50ÂHz"
+  },
+  "MO": {
+    "plugs": ["D", "M", "G", "F"],
+    "voltage": "220V",
+    "frequency": "50ÂHz"
+  },
+  "MK": {
+    "plugs": ["C", "F"],
+    "voltage": "230V",
+    "frequency": "50ÂHz"
+  },
+  "MG": {
+    "plugs": ["C", "D", "E", "J", "K"],
+    "voltage": "127V,220V",
+    "frequency": "50Hz"
+  },
+  "MW": {
+    "plugs": ["G"],
+    "voltage": "230V",
+    "frequency": "50ÂHz"
+  },
+  "MY": {
+    "plugs": ["A", "C", "G", "M"],
+    "voltage": "240V",
+    "frequency": "50ÂHz"
+  },
+  "MV": {
+    "plugs": ["A", "C", "D", "G", "J", "K", "L"],
+    "voltage": "230V",
+    "frequency": "50ÂHz"
+  },
+  "ML": {
+    "plugs": ["C", "E"],
+    "voltage": "220V",
+    "frequency": "50ÂHz"
+  },
+  "MT": {
+    "plugs": ["G"],
+    "voltage": "230V",
+    "frequency": "50ÂHz"
+  },
+  "MQ": {
+    "plugs": ["C", "D", "E"],
+    "voltage": "220V",
+    "frequency": "50ÂHz"
+  },
+  "MR": {
+    "plugs": ["C"],
+    "voltage": "220V",
+    "frequency": "50ÂHz"
+  },
+  "MU": {
+    "plugs": ["C", "G"],
+    "voltage": "230V",
+    "frequency": "50ÂHz"
+  },
+  "MX": {
+    "plugs": ["A", "B"],
+    "voltage": "127V",
+    "frequency": "60ÂHz"
+  },
+  "FM": {
+    "plugs": ["A", "B"],
+    "voltage": "120V",
+    "frequency": "60ÂHz"
+  },
+  "MC": {
+    "plugs": ["C", "D", "E", "F"],
+    "voltage": "230V",
+    "frequency": "50ÂHz"
+  },
+  "MN": {
+    "plugs": ["C", "E"],
+    "voltage": "220ÂV",
+    "frequency": "50ÂHz"
+  },
+  "ME": {
+    "plugs": ["C", "F"],
+    "voltage": "230V",
+    "frequency": "50ÂHz"
+  },
+  "MS": {
+    "plugs": ["A", "B"],
+    "voltage": "230V",
+    "frequency": "60ÂHz"
+  },
+  "MA": {
+    "plugs": ["C", "E"],
+    "voltage": "127V,220V",
+    "frequency": "50Hz"
+  },
+  "MZ": {
+    "plugs": ["C", "F", "M"],
+    "voltage": "220V",
+    "frequency": "50ÂHz"
+  },
+  "MM": {
+    "plugs": ["C", "D", "F", "G"],
+    "voltage": "230V",
+    "frequency": "50Hz"
+  },
+  "NA": {
+    "plugs": ["D", "M"],
+    "voltage": "220V",
+    "frequency": "50ÂHz"
+  },
+  "NR": {
+    "plugs": ["I"],
+    "voltage": "240V",
+    "frequency": "50ÂHz"
+  },
+  "NP": {
+    "plugs": ["C", "D", "M"],
+    "voltage": "230V",
+    "frequency": "50ÂHz"
+  },
+  "NL": {
+    "plugs": ["C", "F"],
+    "voltage": "230V",
+    "frequency": "50ÂHz"
+  },
+  "CW": {
+    "plugs": ["A", "B", "C", "F"],
+    "voltage": "127V,220V",
+    "frequency": "50Hz"
+  },
+  "NC": {
+    "plugs": ["C", "F"],
+    "voltage": "220V",
+    "frequency": "50ÂHz"
+  },
+  "NZ": {
+    "plugs": ["I"],
+    "voltage": "230V",
+    "frequency": "50ÂHz"
+  },
+  "NI": {
+    "plugs": ["A", "B"],
+    "voltage": "120V",
+    "frequency": "60ÂHz"
+  },
+  "NE": {
+    "plugs": ["A", "B", "C", "D", "E", "F"],
+    "voltage": "220V",
+    "frequency": "50ÂHz"
+  },
+  "NG": {
+    "plugs": ["D", "G"],
+    "voltage": "230V",
+    "frequency": "50ÂHz"
+  },
+  "NO": {
+    "plugs": ["C", "F"],
+    "voltage": "230V",
+    "frequency": "50ÂHz"
+  },
+  "OM": {
+    "plugs": ["C", "G"],
+    "voltage": "240V",
+    "frequency": "50ÂHz"
+  },
+  "PK": {
+    "plugs": ["C", "D", "G", "M"],
+    "voltage": "230V",
+    "frequency": "50ÂHz"
+  },
+  "PW": {
+    "plugs": ["A", "B"],
+    "voltage": "120V",
+    "frequency": "60Hz"
+  },
+  "PA": {
+    "plugs": ["A", "B"],
+    "voltage": "110V",
+    "frequency": "60ÂHz"
+  },
+  "PG": {
+    "plugs": ["I"],
+    "voltage": "240V",
+    "frequency": "50ÂHz"
+  },
+  "PY": {
+    "plugs": ["C"],
+    "voltage": "220V",
+    "frequency": "50ÂHz"
+  },
+  "PE": {
+    "plugs": ["A", "B", "C"],
+    "voltage": "220V",
+    "frequency": "60ÂHz"
+  },
+  "PH": {
+    "plugs": ["A", "B", "C"],
+    "voltage": "220V",
+    "frequency": "60ÂHz"
+  },
+  "PL": {
+    "plugs": ["C", "E"],
+    "voltage": "230V",
+    "frequency": "50ÂHz"
+  },
+  "PT": {
+    "plugs": ["C", "F"],
+    "voltage": "230V",
+    "frequency": "50ÂHz"
+  },
+  "PR": {
+    "plugs": ["A", "B"],
+    "voltage": "120V",
+    "frequency": "60ÂHz"
+  },
+  "QA": {
+    "plugs": ["D", "G"],
+    "voltage": "240V",
+    "frequency": "50ÂHz"
+  },
+  "MD": {
+    "plugs": ["C", "F"],
+    "voltage": "220V",
+    "frequency": "50ÂHz"
+  },
+  "RE": {
+    "plugs": ["E"],
+    "voltage": "220V",
+    "frequency": "50ÂHz"
+  },
+  "RO": {
+    "plugs": ["C", "F"],
+    "voltage": "230V",
+    "frequency": "50ÂHz"
+  },
+  "RU": {
+    "plugs": ["C", "F"],
+    "voltage": "220V",
+    "frequency": "50ÂHz"
+  },
+  "RW": {
+    "plugs": ["C", "J"],
+    "voltage": "230V",
+    "frequency": "50ÂHz"
+  },
+  "KN": {
+    "plugs": ["A", "B", "D", "G"],
+    "voltage": "230V",
+    "frequency": "60Hz"
+  },
+  "LC": {
+    "plugs": ["G"],
+    "voltage": "240V",
+    "frequency": "50ÂHz"
+  },
+  "MF": {
+    "plugs": ["C", "F"],
+    "voltage": "120V,220V",
+    "frequency": "60Hz"
+  },
+  "VC": {
+    "plugs": ["A", "C", "E", "G", "I", "K"],
+    "voltage": "230V",
+    "frequency": "50ÂHz"
+  },
+  "WS": {
+    "plugs": ["I"],
+    "voltage": "230V",
+    "frequency": "50ÂHz"
+  },
+  "SM": {
+    "plugs": ["C", "F", "L"],
+    "voltage": "230V",
+    "frequency": "50Hz"
+  },
+  "ST": {
+    "plugs": ["C", "F"],
+    "voltage": "220V",
+    "frequency": "50ÂHz"
+  },
+  "SA": {
+    "plugs": ["G"],
+    "voltage": "220V,230V",
+    "frequency": "60ÂHz"
+  },
+  "SN": {
+    "plugs": ["C", "D", "E", "K"],
+    "voltage": "230V",
+    "frequency": "50ÂHz"
+  },
+  "RS": {
+    "plugs": ["C", "F"],
+    "voltage": "230V",
+    "frequency": "50ÂHz"
+  },
+  "SC": {
+    "plugs": ["G"],
+    "voltage": "240V",
+    "frequency": "50ÂHz"
+  },
+  "SL": {
+    "plugs": ["D", "G"],
+    "voltage": "230V",
+    "frequency": "50ÂHz"
+  },
+  "SG": {
+    "plugs": ["C", "G", "M"],
+    "voltage": "230V",
+    "frequency": "50ÂHz"
+  },
+  "SK": {
+    "plugs": ["C", "E"],
+    "voltage": "230V",
+    "frequency": "50ÂHz"
+  },
+  "SI": {
+    "plugs": ["C", "F"],
+    "voltage": "230V",
+    "frequency": "50ÂHz"
+  },
+  "SB": {
+    "plugs": ["I", "G"],
+    "voltage": "220V",
+    "frequency": "50Hz"
+  },
+  "SO": {
+    "plugs": ["C"],
+    "voltage": "220V",
+    "frequency": "50ÂHz"
+  },
+  "ZA": {
+    "plugs": ["C", "D", "M", "N"],
+    "voltage": "230V",
+    "frequency": "50ÂHz"
+  },
+  "ES": {
+    "plugs": ["C", "F"],
+    "voltage": "230V",
+    "frequency": "50ÂHz"
+  },
+  "LK": {
+    "plugs": ["D", "M", "G"],
+    "voltage": "230V",
+    "frequency": "50ÂHz"
+  },
+  "SD": {
+    "plugs": ["C", "D"],
+    "voltage": "230V",
+    "frequency": "50ÂHz"
+  },
+  "SR": {
+    "plugs": ["C", "F"],
+    "voltage": "127V",
+    "frequency": "60ÂHz"
+  },
+  "SZ": {
+    "plugs": ["M"],
+    "voltage": "230V",
+    "frequency": "50ÂHz"
+  },
+  "SE": {
+    "plugs": ["C", "F"],
+    "voltage": "230V",
+    "frequency": "50ÂHz"
+  },
+  "CH": {
+    "plugs": ["C", "J"],
+    "voltage": "230V",
+    "frequency": "50ÂHz"
+  },
+  "SY": {
+    "plugs": ["C", "E", "L"],
+    "voltage": "220V",
+    "frequency": "50ÂHz"
+  },
+  "TW": {
+    "plugs": ["A", "B"],
+    "voltage": "110V",
+    "frequency": "60ÂHz"
+  },
+  "TZ": {
+    "plugs": ["D", "G"],
+    "voltage": "230V",
+    "frequency": "50ÂHz"
+  },
+  "TJ": {
+    "plugs": ["C", "F", "I"],
+    "voltage": "220V",
+    "frequency": "50ÂHz"
+  },
+  "TH": {
+    "plugs": ["A", "B", "C", "F"],
+    "voltage": "220V",
+    "frequency": "50ÂHz"
+  },
+  "TL": {
+    "plugs": ["C", "E", "F", "I"],
+    "voltage": "220V",
+    "frequency": "50ÂHz"
+  },
+  "TG": {
+    "plugs": ["C"],
+    "voltage": "220V",
+    "frequency": "50ÂHz"
+  },
+  "TO": {
+    "plugs": ["I"],
+    "voltage": "240V",
+    "frequency": "50ÂHz"
+  },
+  "TT": {
+    "plugs": ["A", "B"],
+    "voltage": "115V",
+    "frequency": "60ÂHz"
+  },
+  "TN": {
+    "plugs": ["C", "E"],
+    "voltage": "230V",
+    "frequency": "50ÂHz"
+  },
+  "TR": {
+    "plugs": ["C", "F"],
+    "voltage": "220V",
+    "frequency": "50ÂHz"
+  },
+  "TM": {
+    "plugs": ["B", "C", "F"],
+    "voltage": "220V",
+    "frequency": "50ÂHz"
+  },
+  "TC": {
+    "plugs": ["A", "B"],
+    "voltage": "120V",
+    "frequency": "60Hz"
+  },
+  "TV": {
+    "plugs": ["I"],
+    "voltage": "220V",
+    "frequency": "50Hz"
+  },
+  "UG": {
+    "plugs": ["G"],
+    "voltage": "240V",
+    "frequency": "50ÂHz"
+  },
+  "UA": {
+    "plugs": ["C", "F"],
+    "voltage": "220V",
+    "frequency": "50ÂHz"
+  },
+  "AE": {
+    "plugs": ["C", "D", "G"],
+    "voltage": "220V",
+    "frequency": "50ÂHz"
+  },
+  "GB": {
+    "plugs": ["G"],
+    "voltage": "230V",
+    "frequency": "50ÂHz"
+  },
+  "US": {
+    "plugs": ["A", "B"],
+    "voltage": "120ÂV",
+    "frequency": "60ÂHz"
+  },
+  "VI": {
+    "plugs": ["A", "B"],
+    "voltage": "110V",
+    "frequency": "60ÂHz"
+  },
+  "UY": {
+    "plugs": ["C", "F", "I", "L"],
+    "voltage": "230V",
+    "frequency": "50ÂHz"
+  },
+  "UZ": {
+    "plugs": ["C", "I"],
+    "voltage": "220V",
+    "frequency": "50ÂHz"
+  },
+  "VU": {
+    "plugs": ["C", "G", "I"],
+    "voltage": "220V",
+    "frequency": "50ÂHz"
+  },
+  "VE": {
+    "plugs": ["A", "B"],
+    "voltage": "120V",
+    "frequency": "60ÂHz"
+  },
+  "VN": {
+    "plugs": ["A", "C", "F"],
+    "voltage": "220V",
+    "frequency": "50ÂHz"
+  },
+  "YE": {
+    "plugs": ["A", "D", "G"],
+    "voltage": "230V",
+    "frequency": "50ÂHz"
+  },
+  "ZM": {
+    "plugs": ["C", "D", "G"],
+    "voltage": "230V",
+    "frequency": "50ÂHz"
+  },
+  "ZW": {
+    "plugs": ["D", "G"],
+    "voltage": "220V",
+    "frequency": "50ÂHz"
+  }
+}
