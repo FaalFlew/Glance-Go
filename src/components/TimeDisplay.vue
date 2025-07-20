@@ -39,6 +39,18 @@
                 ><span>{{ data.utcOffset }}</span>
               </div>
             </div>
+            <button
+              @click="$emit('toggle-favorite')"
+              class="p-2 -mr-2 -mt-1 text-slate-500 hover:text-yellow-400 transition-colors"
+              title="Toggle Favorite"
+            >
+              <Star
+                :class="[
+                  'w-6 h-6 transition-all',
+                  { 'text-yellow-400 fill-current': isFavorite },
+                ]"
+              />
+            </button>
           </div>
         </div>
 
@@ -77,12 +89,16 @@
 </template>
 <script setup>
 import { ref, computed, watch, onUnmounted } from "vue";
+import { Star } from "lucide-vue-next";
 
 const props = defineProps({
   data: { type: Object, default: null },
   loading: { type: Boolean, default: false },
   error: { type: String, default: null },
+  isFavorite: { type: Boolean, default: false },
 });
+
+const emit = defineEmits(["toggle-favorite"]);
 
 const activeView = ref("time");
 const localTime = ref(null);

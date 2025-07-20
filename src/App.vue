@@ -2,7 +2,8 @@
   <div class="h-screen w-screen">
     <SideMenu
       :recents="recents"
-      :is-loading="isRecentsLoading"
+      :favorites="favorites"
+      :is-loading="isRecentsLoading || isFavoritesLoading"
       @location-click="handleLocationClick"
     />
     <MapComponent
@@ -16,6 +17,8 @@
       :forecast="forecastData"
       :loading="isLoading"
       :error="error"
+      :is-favorite="isCurrentLocationFavorite"
+      @toggle-favorite="handleToggleFavorite"
     />
   </div>
 </template>
@@ -27,6 +30,7 @@ import TimeDisplay from "@/components/TimeDisplay.vue";
 import { useWorldTime } from "./composables/useWorldTime.js";
 import SideMenu from "@/components/SideMenu.vue";
 import { useRecentLocations } from "@/composables/useRecentLocations";
+import { useFavorites } from "@/composables/useFavorites";
 
 const { locationData, forecastData, isLoading, error, fetchLocationData } =
   useWorldTime();
@@ -38,20 +42,55 @@ const handleMapClick = ({ lat, lng }) => {
 };
 
 const {
+  favorites,
+  isLoading: isFavoritesLoading,
+  toggleFavorite,
+  isFavorite,
+} = useFavorites();
+const {
   recents,
   isLoading: isRecentsLoading,
   addRecent,
 } = useRecentLocations();
 
+const isCurrentLocationFavorite = computed(() => {
+  return locationData.value ? isFavorite(locationData.value) : false;
+});
+
 const handleLocationClick = ({ lat, lng }) => {
   lastClickedCoords.value = { lat, lng };
   fetchLocationData(lat, lng);
 };
+
 watch(locationData, (newData) => {
   if (newData) {
     currentMapTheme.value = newData.isDay ? "day" : "night";
   }
 });
+const handleToggleFavorite = () => {
+  if (!locationData.value || !lastClickedCoords.value) return;
+
+  const locationWithCoords = {
+    ...locationData.value,
+    ...lastClickedCoords.value,
+  };
+
+  toggleFavorite(locationWithCoords);
+};
+
+watch(
+  locationData,
+  (newData) => {
+    if (!newData || !lastClickedCoords.value) return;
+
+    const locationWithCoords = {
+      ...newData,
+      ...lastClickedCoords.value,
+    };
+    addRecent(locationWithCoords);
+  },
+  { immediate: false }
+);
 </script>
 
 <style>

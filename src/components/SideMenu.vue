@@ -1,7 +1,7 @@
 <template>
   <Transition name="menu-fade">
     <div
-      v-if="recents.length > 0"
+      v-if="recents.length > 0 || favorites.length > 0"
       class="absolute left-4 top-1/2 -translate-y-1/2 w-60 max-h-[60vh] flex flex-col p-3 bg-slate-900/80 backdrop-blur-sm border border-slate-700 rounded-xl shadow-2xl text-slate-100 font-sans z-20"
     >
       <div class="flex border-b border-slate-700 mb-2">
@@ -15,6 +15,17 @@
           ]"
         >
           Recents
+        </button>
+        <button
+          @click="activeTab = 'favorites'"
+          :class="[
+            'flex-1 p-2 text-sm font-bold transition-colors',
+            activeTab === 'favorites'
+              ? 'text-white'
+              : 'text-slate-400 hover:text-white',
+          ]"
+        >
+          Favorites
         </button>
       </div>
 
@@ -40,7 +51,11 @@
           v-if="activeList.length === 0"
           class="text-center text-xs text-slate-400 p-4"
         >
-          {{ activeTab === "recents" && "No recent locations." }}
+          {{
+            activeTab === "recents"
+              ? "No recent locations."
+              : "No favorite locations yet."
+          }}
         </p>
       </div>
     </div>
@@ -52,6 +67,7 @@ import { ref, computed, watch } from "vue";
 
 const props = defineProps({
   recents: { type: Array, required: true },
+  favorites: { type: Array, required: true },
 });
 
 defineEmits(["location-click"]);
@@ -61,14 +77,14 @@ const activeTab = ref("recents");
 watch(
   () => props.recents,
   (newRecents) => {
-    if (newRecents.length === 0) {
+    if (newRecents.length === 0 && props.favorites.length > 0) {
       activeTab.value = "favorites";
     }
   }
 );
 
 const activeList = computed(() => {
-  return activeTab.value === "recents" && props.recents;
+  return activeTab.value === "recents" ? props.recents : props.favorites;
 });
 </script>
 
