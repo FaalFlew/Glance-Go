@@ -46,6 +46,13 @@
               </div>
             </button>
             <button
+              @click="activeView = 'timeTravel'"
+              class="p-2 -mt-1 text-slate-500 hover:text-purple-400 transition-colors"
+              title="Time Travel"
+            >
+              <Hourglass class="w-6 h-6" />
+            </button>
+            <button
               @click="$emit('show-news')"
               class="p-2 -mt-1 text-slate-500 hover:text-blue-400 transition-colors"
               title="View Traveler's Headlines"
@@ -83,6 +90,48 @@
               </div>
             </div>
           </div>
+          <div v-else-if="activeView === 'timeTravel'" key="timeTravel">
+            <div
+              class="flex items-center justify-between pb-2 mb-2 border-b border-slate-700"
+            >
+              <h3 class="font-bold text-lg">Time Converter</h3>
+              <button
+                @click="activeView = 'time'"
+                class="p-2 -m-2 text-slate-400 hover:text-white"
+                title="Back to live time"
+              >
+                <X class="w-5 h-5" />
+              </button>
+            </div>
+
+            <div class="text-center py-4">
+              <p class="text-xs text-slate-400">Their Time</p>
+              <p class="text-6xl font-bold tracking-tight">
+                {{ projectedRemoteTime }}
+              </p>
+              <p class="text-lg text-slate-300">{{ projectedRemoteDate }}</p>
+            </div>
+
+            <div class="space-y-2">
+              <label
+                for="local-time"
+                class="block text-sm font-medium text-slate-300 mb-1 text-center"
+                >Your Time</label
+              >
+              <input
+                id="local-time"
+                type="range"
+                min="0"
+                max="23.99"
+                step="0.01"
+                v-model="localTimeSlider"
+                class="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-purple-400"
+              />
+              <p class="text-center font-mono text-lg text-slate-100">
+                {{ localTimeDisplay }}
+              </p>
+            </div>
+          </div>
         </Transition>
         <div
           class="grid grid-cols-2 gap-4 text-center border-t border-slate-700 pt-4"
@@ -114,7 +163,7 @@
 </template>
 <script setup>
 import { ref, computed, watch, onUnmounted } from "vue";
-import { Star, X, Newspaper } from "lucide-vue-next";
+import { Star, X, Newspaper, Hourglass } from "lucide-vue-next";
 
 const props = defineProps({
   data: { type: Object, default: null },
@@ -127,6 +176,69 @@ const emit = defineEmits(["toggle-favorite", "show-country-info", "show-news"]);
 
 const activeView = ref("time");
 const localTime = ref(null);
+const localTimeSlider = ref(12);
+
+const timeDifferenceHours = computed(() => {
+  if (!props.data) return 0;
+  const remoteOffset = parseFloat(props.data.utcOffset.replace("UTC", ""));
+  const localOffset = parseFloat(
+    (new Date().getTimezoneOffset() / -60).toString()
+  );
+  return remoteOffset - localOffset;
+});
+
+// This is where the main fix is applied.
+const projectedRemoteTime = computed(() => {
+  if (!props.data) return "--:--";
+
+  // Use parseFloat() to ensure all values are numbers before addition.
+  const sliderValue = parseFloat(localTimeSlider.value);
+  const difference = parseFloat(timeDifferenceHours.value);
+
+  let remoteHours = sliderValue + difference;
+
+  if (remoteHours >= 24) {
+    remoteHours -= 24;
+  } else if (remoteHours < 0) {
+    remoteHours += 24;
+  }
+
+  const hours = Math.floor(remoteHours).toString().padStart(2, "0");
+  const minutes = Math.round((remoteHours - Math.floor(remoteHours)) * 60)
+    .toString()
+    .padStart(2, "0");
+
+  return `${hours}:${minutes}`;
+});
+
+const projectedRemoteDateObj = computed(() => {
+  const sliderValue = parseFloat(localTimeSlider.value);
+  const difference = parseFloat(timeDifferenceHours.value);
+  let remoteHours = sliderValue + difference;
+
+  const now = new Date();
+  let dayOffset = 0;
+
+  if (remoteHours >= 24) {
+    remoteHours -= 24;
+    dayOffset = 1;
+  } else if (remoteHours < 0) {
+    remoteHours += 24;
+    dayOffset = -1;
+  }
+
+  const hours = Math.floor(remoteHours);
+  const minutes = Math.round((remoteHours - hours) * 60);
+
+  return new Date(
+    now.getFullYear(),
+    now.getMonth(),
+    now.getDate() + dayOffset,
+    hours,
+    minutes
+  );
+});
+
 let clockInterval = null;
 
 watch(
@@ -148,7 +260,15 @@ const currentTime = computed(() => {
   if (!localTime.value) return "--:--:--";
   return localTime.value.toLocaleTimeString("en-GB");
 });
-
+const localTimeDisplay = computed(() => {
+  const hours = Math.floor(localTimeSlider.value).toString().padStart(2, "0");
+  const minutes = Math.round(
+    (localTimeSlider.value - Math.floor(localTimeSlider.value)) * 60
+  )
+    .toString()
+    .padStart(2, "0");
+  return `${hours}:${minutes}`;
+});
 const currentDate = computed(() => {
   if (!localTime.value) return "";
   return localTime.value.toLocaleDateString("en-US", {
@@ -157,12 +277,25 @@ const currentDate = computed(() => {
     day: "numeric",
   });
 });
+const projectedRemoteDate = computed(() => {
+  if (!props.data) return "";
+  return projectedRemoteDateObj.value.toLocaleDateString("en-US", {
+    weekday: "long",
+  });
+});
+watch(localTimeSlider, () => {
+  if (!props.data) return;
+  emit("time-change", projectedRemoteDateObj.value);
+});
 
 watch(
   () => props.data,
   (newData) => {
+    activeView.value = "time";
     if (newData?.datetime) {
       startClock(newData.datetime);
+      const now = new Date();
+      localTimeSlider.value = now.getHours() + now.getMinutes() / 60;
     } else {
       if (clockInterval) clearInterval(clockInterval);
       localTime.value = null;

@@ -21,6 +21,7 @@
       @toggle-favorite="handleToggleFavorite"
       @show-country-info="handleShowCountryInfo"
       @show-news="handleShowNews"
+      @time-change="handleTimeChange"
     />
 
     <NewsModal
@@ -51,8 +52,8 @@ import { useFavorites } from "@/composables/useFavorites";
 import CountryModal from "@/components/CountryModal.vue";
 import { API_LIMITS } from "@/constants/api";
 import NewsModal from "@/components/NewsModal.vue";
+import { useMapTheme } from "@/composables/useMapTheme";
 
-const currentMapTheme = ref("night");
 const lastClickedCoords = ref(null);
 const isCountryModalVisible = ref(false);
 const isNewsModalVisible = ref(false);
@@ -70,6 +71,7 @@ const {
   newsError,
   fetchLocationData,
   fetchNewsForCountry,
+  getTimeCalculationData,
 } = useWorldTime();
 const {
   favorites,
@@ -83,10 +85,22 @@ const {
   addRecent,
 } = useRecentLocations();
 
+const {
+  currentTheme: currentMapTheme,
+  isTransitioning: isMapTransitioning,
+  updateThemeFromLocation,
+  updateThemeFromProjectedTime,
+} = useMapTheme();
+
 const isCurrentLocationFavorite = computed(() => {
   return locationData.value ? isFavorite(locationData.value) : false;
 });
+const handleTimeChange = (projectedTime) => {
+  const timeData = getTimeCalculationData();
+  if (!timeData) return;
 
+  updateThemeFromProjectedTime(projectedTime, { _internal: timeData });
+};
 const handleLocationClick = ({ lat, lng }) => {
   lastClickedCoords.value = { lat, lng };
   fetchLocationData(lat, lng);
@@ -127,6 +141,7 @@ watch(
   locationData,
   (newData) => {
     if (!newData || !lastClickedCoords.value) return;
+    updateThemeFromLocation(newData);
 
     const locationWithCoords = {
       ...newData,
