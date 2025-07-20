@@ -10,7 +10,6 @@
       >
         <LoaderCircle class="w-10 h-10 text-slate-400 animate-spin" />
       </div>
-
       <div
         v-else-if="error"
         key="error"
@@ -21,30 +20,30 @@
         <p class="text-sm text-slate-300">{{ error }}</p>
       </div>
 
-      <div v-else-if="data" key="data" class="flex flex-col space-y-4">
-        <div class="flex items-start justify-between">
-          <div class="flex items-center space-x-3">
-            <button
-              @click="$emit('show-country-info')"
-              title="View country facts"
-              class="flex items-center space-x-3 text-left focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-800 focus:ring-blue-500 rounded-md"
-            >
-              <img
-                :src="data.flagUrl"
-                :alt="data.locationName"
-                class="w-10 h-auto rounded-md shadow-md"
-              />
-              <div>
-                <p class="text-xl font-bold leading-tight">
-                  {{ data.locationName }}
-                </p>
-                <div class="flex items-center space-x-2 text-sm text-slate-400">
-                  <span>{{ data.abbreviation }}</span
-                  ><span class="text-slate-600">•</span
-                  ><span>{{ data.utcOffset }}</span>
-                </div>
+      <div v-else-if="data" key="data" class="flex flex-col">
+        <div class="flex items-start justify-between mb-4">
+          <button
+            @click="$emit('show-country-info')"
+            title="View country facts"
+            class="flex items-center space-x-3 text-left focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-800 focus:ring-blue-500 rounded-md"
+          >
+            <img
+              :src="data.flagUrl"
+              :alt="data.locationName"
+              class="w-10 h-auto rounded-md shadow-md"
+            />
+            <div>
+              <p class="text-xl font-bold leading-tight">
+                {{ data.locationName }}
+              </p>
+              <div class="flex items-center space-x-2 text-sm text-slate-400">
+                <span>{{ data.abbreviation }}</span
+                ><span class="text-slate-600">•</span
+                ><span>{{ data.utcOffset }}</span>
               </div>
-            </button>
+            </div>
+          </button>
+          <div class="flex items-center space-x-1">
             <button
               @click="activeView = 'timeTravel'"
               class="p-2 -mt-1 text-slate-500 hover:text-purple-400 transition-colors"
@@ -75,10 +74,15 @@
         </div>
 
         <Transition name="view-fade" mode="out-in">
-          <!-- Time View -->
-          <div v-if="activeView === 'time'" key="time">
-            <!-- Current Time and Weather Icon (Unchanged) -->
+          <div v-if="activeView === 'time'" key="time" class="space-y-4">
             <div class="flex items-center space-x-4">
+              <component
+                :is="weatherIconComponent"
+                class="w-12 h-12 mb-1 text-slate-200 group-hover:text-white transition-colors"
+              />
+              <p class="text-xs capitalize text-slate-300">
+                {{ data.weatherDescription }}
+              </p>
               <div class="flex-1 text-right">
                 <p class="text-6xl font-bold tracking-tight">
                   {{ currentTime }}
@@ -89,7 +93,20 @@
                 </p>
               </div>
             </div>
+            <div
+              class="grid grid-cols-2 gap-4 text-center border-t border-slate-700 pt-4"
+            >
+              <div>
+                <p class="text-sm text-slate-400">Sunrise</p>
+                <p class="text-xl font-semibold">{{ data.sunrise }}</p>
+              </div>
+              <div>
+                <p class="text-sm text-slate-400">Sunset</p>
+                <p class="text-xl font-semibold">{{ data.sunset }}</p>
+              </div>
+            </div>
           </div>
+
           <div v-else-if="activeView === 'timeTravel'" key="timeTravel">
             <div
               class="flex items-center justify-between pb-2 mb-2 border-b border-slate-700"
@@ -133,18 +150,6 @@
             </div>
           </div>
         </Transition>
-        <div
-          class="grid grid-cols-2 gap-4 text-center border-t border-slate-700 pt-4"
-        >
-          <div>
-            <p class="text-sm text-slate-400">Sunrise</p>
-            <p class="text-xl font-semibold">{{ data.sunrise }}</p>
-          </div>
-          <div>
-            <p class="text-sm text-slate-400">Sunset</p>
-            <p class="text-xl font-semibold">{{ data.sunset }}</p>
-          </div>
-        </div>
       </div>
 
       <div
@@ -163,19 +168,45 @@
 </template>
 <script setup>
 import { ref, computed, watch, onUnmounted } from "vue";
-import { Star, X, Newspaper, Hourglass } from "lucide-vue-next";
+import {
+  Hourglass,
+  CircleDollarSign,
+  Star,
+  Globe,
+  LoaderCircle,
+  AlertTriangle,
+  Sun,
+  Moon,
+  Cloud,
+  CloudDrizzle,
+  CloudRain,
+  CloudSnow,
+  Wind,
+  Thermometer,
+  Droplets,
+  Gauge,
+  X,
+  Newspaper,
+} from "lucide-vue-next";
 
 const props = defineProps({
   data: { type: Object, default: null },
+  forecast: { type: Array, default: null },
   loading: { type: Boolean, default: false },
   error: { type: String, default: null },
   isFavorite: { type: Boolean, default: false },
 });
 
-const emit = defineEmits(["toggle-favorite", "show-country-info", "show-news"]);
+const emit = defineEmits([
+  "toggle-favorite",
+  "show-news",
+  "show-country-info",
+  "time-change",
+]);
 
 const activeView = ref("time");
 const localTime = ref(null);
+let clockInterval = null;
 const localTimeSlider = ref(12);
 
 const timeDifferenceHours = computed(() => {
@@ -187,11 +218,9 @@ const timeDifferenceHours = computed(() => {
   return remoteOffset - localOffset;
 });
 
-// This is where the main fix is applied.
 const projectedRemoteTime = computed(() => {
   if (!props.data) return "--:--";
 
-  // Use parseFloat() to ensure all values are numbers before addition.
   const sliderValue = parseFloat(localTimeSlider.value);
   const difference = parseFloat(timeDifferenceHours.value);
 
@@ -239,27 +268,13 @@ const projectedRemoteDateObj = computed(() => {
   );
 });
 
-let clockInterval = null;
-
-watch(
-  () => props.data,
-  () => {
-    activeView.value = "time";
-  }
-);
-
-const startClock = (initialDateTime) => {
-  if (clockInterval) clearInterval(clockInterval);
-  localTime.value = new Date(initialDateTime);
-  clockInterval = setInterval(() => {
-    localTime.value = new Date(localTime.value.getTime() + 1000);
-  }, 1000);
-};
-
-const currentTime = computed(() => {
-  if (!localTime.value) return "--:--:--";
-  return localTime.value.toLocaleTimeString("en-GB");
+const projectedRemoteDate = computed(() => {
+  if (!props.data) return "";
+  return projectedRemoteDateObj.value.toLocaleDateString("en-US", {
+    weekday: "long",
+  });
 });
+
 const localTimeDisplay = computed(() => {
   const hours = Math.floor(localTimeSlider.value).toString().padStart(2, "0");
   const minutes = Math.round(
@@ -269,6 +284,11 @@ const localTimeDisplay = computed(() => {
     .padStart(2, "0");
   return `${hours}:${minutes}`;
 });
+
+const currentTime = computed(() => {
+  if (!localTime.value) return "--:--:--";
+  return localTime.value.toLocaleTimeString("en-GB");
+});
 const currentDate = computed(() => {
   if (!localTime.value) return "";
   return localTime.value.toLocaleDateString("en-US", {
@@ -277,12 +297,39 @@ const currentDate = computed(() => {
     day: "numeric",
   });
 });
-const projectedRemoteDate = computed(() => {
-  if (!props.data) return "";
-  return projectedRemoteDateObj.value.toLocaleDateString("en-US", {
-    weekday: "long",
-  });
+const weatherIconComponent = computed(() => {
+  if (!props.data?.weatherIcon) return Thermometer;
+  const iconCode = props.data.weatherIcon.slice(0, 2);
+  switch (iconCode) {
+    case "01":
+      return props.data.isDay ? Sun : Moon;
+    case "02":
+      return Cloud;
+    case "03":
+    case "04":
+      return CloudDrizzle;
+    case "09":
+    case "10":
+      return CloudRain;
+    case "11":
+      return Wind;
+    case "13":
+      return CloudSnow;
+    case "50":
+      return Wind;
+    default:
+      return Thermometer;
+  }
 });
+
+const startClock = (initialDateTime) => {
+  if (clockInterval) clearInterval(clockInterval);
+  localTime.value = new Date(initialDateTime);
+  clockInterval = setInterval(() => {
+    localTime.value = new Date(localTime.value.getTime() + 1000);
+  }, 1000);
+};
+
 watch(localTimeSlider, () => {
   if (!props.data) return;
   emit("time-change", projectedRemoteDateObj.value);
