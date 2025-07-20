@@ -24,21 +24,27 @@
       <div v-else-if="data" key="data" class="flex flex-col space-y-4">
         <div class="flex items-start justify-between">
           <div class="flex items-center space-x-3">
-            <img
-              :src="data.flagUrl"
-              :alt="data.locationName"
-              class="w-10 h-auto rounded-md shadow-md"
-            />
-            <div>
-              <p class="text-xl font-bold leading-tight">
-                {{ data.locationName }}
-              </p>
-              <div class="flex items-center space-x-2 text-sm text-slate-400">
-                <span>{{ data.abbreviation }}</span
-                ><span class="text-slate-600">•</span
-                ><span>{{ data.utcOffset }}</span>
+            <button
+              @click="$emit('show-country-info')"
+              title="View country facts"
+              class="flex items-center space-x-3 text-left focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-800 focus:ring-blue-500 rounded-md"
+            >
+              <img
+                :src="data.flagUrl"
+                :alt="data.locationName"
+                class="w-10 h-auto rounded-md shadow-md"
+              />
+              <div>
+                <p class="text-xl font-bold leading-tight">
+                  {{ data.locationName }}
+                </p>
+                <div class="flex items-center space-x-2 text-sm text-slate-400">
+                  <span>{{ data.abbreviation }}</span
+                  ><span class="text-slate-600">•</span
+                  ><span>{{ data.utcOffset }}</span>
+                </div>
               </div>
-            </div>
+            </button>
             <button
               @click="$emit('toggle-favorite')"
               class="p-2 -mr-2 -mt-1 text-slate-500 hover:text-yellow-400 transition-colors"
@@ -98,7 +104,7 @@ const props = defineProps({
   isFavorite: { type: Boolean, default: false },
 });
 
-const emit = defineEmits(["toggle-favorite"]);
+const emit = defineEmits(["toggle-favorite", "show-country-info"]);
 
 const activeView = ref("time");
 const localTime = ref(null);

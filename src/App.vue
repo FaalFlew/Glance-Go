@@ -19,6 +19,13 @@
       :error="error"
       :is-favorite="isCurrentLocationFavorite"
       @toggle-favorite="handleToggleFavorite"
+      @show-country-info="handleShowCountryInfo"
+    />
+
+    <CountryModal
+      v-if="isCountryModalVisible && locationData"
+      :data="locationData"
+      @close="closeCountryModal"
     />
   </div>
 </template>
@@ -31,16 +38,20 @@ import { useWorldTime } from "./composables/useWorldTime.js";
 import SideMenu from "@/components/SideMenu.vue";
 import { useRecentLocations } from "@/composables/useRecentLocations";
 import { useFavorites } from "@/composables/useFavorites";
+import CountryModal from "@/components/CountryModal.vue";
+import { API_LIMITS } from "@/constants/api";
 
-const { locationData, forecastData, isLoading, error, fetchLocationData } =
-  useWorldTime();
 const currentMapTheme = ref("night");
 const lastClickedCoords = ref(null);
+const isCountryModalVisible = ref(false);
+
 const handleMapClick = ({ lat, lng }) => {
   lastClickedCoords.value = { lat, lng };
   fetchLocationData(lat, lng);
 };
 
+const { locationData, forecastData, isLoading, error, fetchLocationData } =
+  useWorldTime();
 const {
   favorites,
   isLoading: isFavoritesLoading,
@@ -77,7 +88,13 @@ const handleToggleFavorite = () => {
 
   toggleFavorite(locationWithCoords);
 };
-
+const handleShowCountryInfo = () => {
+  if (!locationData.value) return;
+  isCountryModalVisible.value = true;
+};
+const closeCountryModal = () => {
+  isCountryModalVisible.value = false;
+};
 watch(
   locationData,
   (newData) => {
