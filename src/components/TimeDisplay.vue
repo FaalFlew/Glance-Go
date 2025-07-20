@@ -46,6 +46,13 @@
               </div>
             </button>
             <button
+              @click="$emit('show-news')"
+              class="p-2 -mt-1 text-slate-500 hover:text-blue-400 transition-colors"
+              title="View Traveler's Headlines"
+            >
+              <Newspaper class="w-6 h-6" />
+            </button>
+            <button
               @click="$emit('toggle-favorite')"
               class="p-2 -mr-2 -mt-1 text-slate-500 hover:text-yellow-400 transition-colors"
               title="Toggle Favorite"
@@ -95,7 +102,7 @@
 </template>
 <script setup>
 import { ref, computed, watch, onUnmounted } from "vue";
-import { Star } from "lucide-vue-next";
+import { Star, X, Newspaper } from "lucide-vue-next";
 
 const props = defineProps({
   data: { type: Object, default: null },
@@ -104,7 +111,7 @@ const props = defineProps({
   isFavorite: { type: Boolean, default: false },
 });
 
-const emit = defineEmits(["toggle-favorite", "show-country-info"]);
+const emit = defineEmits(["toggle-favorite", "show-country-info", "show-news"]);
 
 const activeView = ref("time");
 const localTime = ref(null);

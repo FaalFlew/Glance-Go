@@ -20,6 +20,16 @@
       :is-favorite="isCurrentLocationFavorite"
       @toggle-favorite="handleToggleFavorite"
       @show-country-info="handleShowCountryInfo"
+      @show-news="handleShowNews"
+    />
+
+    <NewsModal
+      v-if="isNewsModalVisible"
+      :news="newsData"
+      :loading="isNewsLoading"
+      :error="newsError"
+      :country-name="locationData?.country || 'this country'"
+      @close="closeNewsModal"
     />
 
     <CountryModal
@@ -40,18 +50,27 @@ import { useRecentLocations } from "@/composables/useRecentLocations";
 import { useFavorites } from "@/composables/useFavorites";
 import CountryModal from "@/components/CountryModal.vue";
 import { API_LIMITS } from "@/constants/api";
+import NewsModal from "@/components/NewsModal.vue";
 
 const currentMapTheme = ref("night");
 const lastClickedCoords = ref(null);
 const isCountryModalVisible = ref(false);
+const isNewsModalVisible = ref(false);
 
 const handleMapClick = ({ lat, lng }) => {
   lastClickedCoords.value = { lat, lng };
   fetchLocationData(lat, lng);
 };
 
-const { locationData, forecastData, isLoading, error, fetchLocationData } =
-  useWorldTime();
+const {
+  locationData,
+  forecastData,
+  newsData,
+  isNewsLoading,
+  newsError,
+  fetchLocationData,
+  fetchNewsForCountry,
+} = useWorldTime();
 const {
   favorites,
   isLoading: isFavoritesLoading,
@@ -92,8 +111,17 @@ const handleShowCountryInfo = () => {
   if (!locationData.value) return;
   isCountryModalVisible.value = true;
 };
+const handleShowNews = () => {
+  if (!locationData.value?.countryCode) return;
+
+  isNewsModalVisible.value = true;
+  fetchNewsForCountry(locationData.value.countryCode);
+};
 const closeCountryModal = () => {
   isCountryModalVisible.value = false;
+};
+const closeNewsModal = () => {
+  isNewsModalVisible.value = false;
 };
 watch(
   locationData,
