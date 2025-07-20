@@ -84,6 +84,18 @@
             </div>
           </div>
         </Transition>
+        <div
+          class="grid grid-cols-2 gap-4 text-center border-t border-slate-700 pt-4"
+        >
+          <div>
+            <p class="text-sm text-slate-400">Sunrise</p>
+            <p class="text-xl font-semibold">{{ data.sunrise }}</p>
+          </div>
+          <div>
+            <p class="text-sm text-slate-400">Sunset</p>
+            <p class="text-xl font-semibold">{{ data.sunset }}</p>
+          </div>
+        </div>
       </div>
 
       <div
