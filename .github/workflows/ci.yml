@@ -30,6 +30,8 @@ jobs:
         with:
           publish-dir: ./dist
           production-branch: main
-          netlify-auth-token: ${{ secrets.NETLIFY_GLANCEGO }}
-          netlify-site-id: ${{ secrets.NETLIFY_GLANCEGO_PROJECTID }}
           deploy-message: "Auto-deploy from GitHub Actions"
+          enable-commit-comment: true
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_GLANCEGO }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_GLANCEGO_PROJECTID }}
