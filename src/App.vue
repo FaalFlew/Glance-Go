@@ -1,11 +1,12 @@
 <template>
-  <div class="h-screen w-screen">
+  <main class="relative h-full w-full">
     <SideMenu
       :recents="recents"
       :favorites="favorites"
       :is-loading="isRecentsLoading || isFavoritesLoading"
       @location-click="handleLocationClick"
     />
+
     <MapComponent
       :theme="currentMapTheme"
       :is-transitioning="isMapTransitioning"
@@ -15,12 +16,12 @@
     <TimeDisplay
       :data="locationData"
       :forecast="forecastData"
-      :loading="isLoading"
-      :error="error"
+      :loading="isLocationLoading"
+      :error="locationError"
       :is-favorite="isCurrentLocationFavorite"
       @toggle-favorite="handleToggleFavorite"
-      @show-country-info="handleShowCountryInfo"
       @show-news="handleShowNews"
+      @show-country-info="handleShowCountryInfo"
       @time-change="handleTimeChange"
     />
 
@@ -38,47 +39,45 @@
       :data="locationData"
       @close="closeCountryModal"
     />
-  </div>
+  </main>
 </template>
 
 <script setup>
-import { ref, watch, computed } from "vue";
-import MapComponent from "@/components/MapComponent.vue";
-import TimeDisplay from "@/components/TimeDisplay.vue";
-import { useWorldTime } from "./composables/useWorldTime.js";
-import SideMenu from "@/components/SideMenu.vue";
-import { useRecentLocations } from "@/composables/useRecentLocations";
+import { ref, computed, watch, onUnmounted } from "vue";
+
+import { useWorldTime } from "@/composables/useWorldTime";
 import { useFavorites } from "@/composables/useFavorites";
-import CountryModal from "@/components/CountryModal.vue";
-import { API_LIMITS } from "@/constants/api";
-import NewsModal from "@/components/NewsModal.vue";
+import { useRecentLocations } from "@/composables/useRecentLocations";
 import { useMapTheme } from "@/composables/useMapTheme";
 
-const lastClickedCoords = ref(null);
-const isCountryModalVisible = ref(false);
-const isNewsModalVisible = ref(false);
+import SideMenu from "@/components/SideMenu.vue";
+import MapComponent from "@/components/MapComponent.vue";
+import TimeDisplay from "@/components/TimeDisplay.vue";
+import NewsModal from "@/components/NewsModal.vue";
+import CountryModal from "@/components/CountryModal.vue";
 
-const handleMapClick = ({ lat, lng }) => {
-  lastClickedCoords.value = { lat, lng };
-  fetchLocationData(lat, lng);
-};
+import { API_LIMITS } from "@/constants/api";
 
 const {
   locationData,
   forecastData,
   newsData,
+  isLoading: isLocationLoading,
   isNewsLoading,
+  error: locationError,
   newsError,
   fetchLocationData,
   fetchNewsForCountry,
   getTimeCalculationData,
 } = useWorldTime();
+
 const {
   favorites,
   isLoading: isFavoritesLoading,
   toggleFavorite,
   isFavorite,
 } = useFavorites();
+
 const {
   recents,
   isLoading: isRecentsLoading,
@@ -92,25 +91,31 @@ const {
   updateThemeFromProjectedTime,
 } = useMapTheme();
 
+const isNewsModalVisible = ref(false);
+const isCountryModalVisible = ref(false);
+const lastClickedCoords = ref(null);
+let debounceTimer = null;
+
 const isCurrentLocationFavorite = computed(() => {
   return locationData.value ? isFavorite(locationData.value) : false;
 });
-const handleTimeChange = (projectedTime) => {
-  const timeData = getTimeCalculationData();
-  if (!timeData) return;
 
-  updateThemeFromProjectedTime(projectedTime, { _internal: timeData });
+const handleMapClick = ({ lat, lng }) => {
+  if (debounceTimer) {
+    clearTimeout(debounceTimer);
+  }
+
+  debounceTimer = setTimeout(() => {
+    lastClickedCoords.value = { lat, lng };
+    fetchLocationData(lat, lng);
+  }, API_LIMITS.DEBOUNCE_DELAY);
 };
+
 const handleLocationClick = ({ lat, lng }) => {
   lastClickedCoords.value = { lat, lng };
   fetchLocationData(lat, lng);
 };
 
-watch(locationData, (newData) => {
-  if (newData) {
-    currentMapTheme.value = newData.isDay ? "day" : "night";
-  }
-});
 const handleToggleFavorite = () => {
   if (!locationData.value || !lastClickedCoords.value) return;
 
@@ -121,26 +126,39 @@ const handleToggleFavorite = () => {
 
   toggleFavorite(locationWithCoords);
 };
-const handleShowCountryInfo = () => {
-  if (!locationData.value) return;
-  isCountryModalVisible.value = true;
-};
+
 const handleShowNews = () => {
   if (!locationData.value?.countryCode) return;
 
   isNewsModalVisible.value = true;
   fetchNewsForCountry(locationData.value.countryCode);
 };
-const closeCountryModal = () => {
-  isCountryModalVisible.value = false;
+
+const handleShowCountryInfo = () => {
+  if (!locationData.value) return;
+  isCountryModalVisible.value = true;
 };
+
+const handleTimeChange = (projectedTime) => {
+  const timeData = getTimeCalculationData();
+  if (!timeData) return;
+
+  updateThemeFromProjectedTime(projectedTime, { _internal: timeData });
+};
+
 const closeNewsModal = () => {
   isNewsModalVisible.value = false;
 };
+
+const closeCountryModal = () => {
+  isCountryModalVisible.value = false;
+};
+
 watch(
   locationData,
   (newData) => {
     if (!newData || !lastClickedCoords.value) return;
+
     updateThemeFromLocation(newData);
 
     const locationWithCoords = {
@@ -151,12 +169,12 @@ watch(
   },
   { immediate: false }
 );
+
+onUnmounted(() => {
+  if (debounceTimer) {
+    clearTimeout(debounceTimer);
+  }
+});
 </script>
 
-<style>
-body {
-  margin: 0;
-  font-family: system-ui, sans-serif;
-  background-color: #1e293b;
-}
-</style>
+<style scoped></style>

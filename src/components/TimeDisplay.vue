@@ -76,13 +76,19 @@
         <Transition name="view-fade" mode="out-in">
           <div v-if="activeView === 'time'" key="time" class="space-y-4">
             <div class="flex items-center space-x-4">
-              <component
-                :is="weatherIconComponent"
-                class="w-12 h-12 mb-1 text-slate-200 group-hover:text-white transition-colors"
-              />
-              <p class="text-xs capitalize text-slate-300">
-                {{ data.weatherDescription }}
-              </p>
+              <button
+                @click="activeView = 'weather'"
+                class="flex flex-col items-center justify-center text-center focus:outline-none group"
+                title="View detailed weather"
+              >
+                <component
+                  :is="weatherIconComponent"
+                  class="w-12 h-12 mb-1 text-slate-200 group-hover:text-white transition-colors"
+                />
+                <p class="text-xs capitalize text-slate-300">
+                  {{ data.weatherDescription }}
+                </p>
+              </button>
               <div class="flex-1 text-right">
                 <p class="text-6xl font-bold tracking-tight">
                   {{ currentTime }}
@@ -103,6 +109,73 @@
               <div>
                 <p class="text-sm text-slate-400">Sunset</p>
                 <p class="text-xl font-semibold">{{ data.sunset }}</p>
+              </div>
+            </div>
+          </div>
+
+          <div v-else-if="activeView === 'weather'" key="weather">
+            <div
+              class="flex items-center justify-between pb-2 mb-2 border-b border-slate-700"
+            >
+              <h3 class="font-bold text-lg">Detailed Weather</h3>
+              <button
+                @click="activeView = 'time'"
+                class="p-2 -m-2 text-slate-400 hover:text-white"
+                title="Back to time view"
+              >
+                <X class="w-5 h-5" />
+              </button>
+            </div>
+            <div class="grid grid-cols-2 gap-x-4 gap-y-3 text-sm">
+              <div class="flex items-center">
+                <Thermometer class="w-4 h-4 mr-2 text-slate-400" /><span
+                  >Feels Like</span
+                ><span class="ml-auto font-semibold"
+                  >{{ data.feelsLike }}°C</span
+                >
+              </div>
+              <div class="flex items-center">
+                <Droplets class="w-4 h-4 mr-2 text-slate-400" /><span
+                  >Humidity</span
+                ><span class="ml-auto font-semibold">{{ data.humidity }}%</span>
+              </div>
+              <div class="flex items-center">
+                <Wind class="w-4 h-4 mr-2 text-slate-400" /><span
+                  >Wind Speed</span
+                ><span class="ml-auto font-semibold"
+                  >{{ data.windSpeed }} m/s</span
+                >
+              </div>
+              <div class="flex items-center">
+                <Gauge class="w-4 h-4 mr-2 text-slate-400" /><span
+                  >Pressure</span
+                ><span class="ml-auto font-semibold"
+                  >{{ data.pressure }} hPa</span
+                >
+              </div>
+            </div>
+            <div
+              v-if="forecast && forecast.length > 0"
+              class="border-t border-slate-700 pt-4 mt-4"
+            >
+              <h3 class="font-bold text-lg mb-3">5-Day Forecast</h3>
+              <div class="flex flex-col space-y-2">
+                <div
+                  v-for="day in forecast"
+                  :key="day.date"
+                  class="flex items-center justify-between text-sm p-1 bg-slate-800/50 rounded-md"
+                >
+                  <span class="font-semibold w-12 text-slate-300">{{
+                    day.date.toLocaleDateString("en-US", { weekday: "short" })
+                  }}</span>
+                  <img :src="day.iconUrl" alt="weather icon" class="w-8 h-8" />
+                  <div class="text-right w-16">
+                    <span class="font-semibold text-slate-200"
+                      >{{ day.maxTemp }}°</span
+                    >
+                    <span class="text-slate-400 ml-2">{{ day.minTemp }}°</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -150,6 +223,24 @@
             </div>
           </div>
         </Transition>
+
+        <div
+          v-if="data.currency"
+          class="flex items-center justify-center space-x-3 border-t border-slate-700 pt-3 mt-4"
+        >
+          <CircleDollarSign class="w-5 h-5 text-slate-500 flex-shrink-0" />
+          <div class="text-center">
+            <p
+              class="font-semibold text-sm text-slate-200"
+              :title="data.currency.name"
+            >
+              {{ data.currency.code }} ({{ data.currency.symbol }})
+            </p>
+            <p class="text-xs text-slate-400 truncate">
+              {{ data.currency.name }}
+            </p>
+          </div>
+        </div>
       </div>
 
       <div
@@ -166,6 +257,7 @@
     </Transition>
   </div>
 </template>
+
 <script setup>
 import { ref, computed, watch, onUnmounted } from "vue";
 import {
