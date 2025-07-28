@@ -33,7 +33,9 @@
               class="w-10 h-auto rounded-md shadow-md"
             />
             <div>
-              <p class="text-xl font-bold leading-tight">
+              <p
+                class="text-xl font-bold leading-tight transition-colors hover:text-slate-300"
+              >
                 {{ data.locationName }}
               </p>
               <div class="flex items-center space-x-2 text-sm text-slate-400">
@@ -44,13 +46,6 @@
             </div>
           </button>
           <div class="flex items-center space-x-1">
-            <button
-              @click="activeView = 'timeTravel'"
-              class="p-2 -mt-1 text-slate-500 hover:text-purple-400 transition-colors"
-              title="Time Travel"
-            >
-              <Hourglass class="w-6 h-6" />
-            </button>
             <button
               @click="$emit('show-news')"
               class="p-2 -mt-1 text-slate-500 hover:text-blue-400 transition-colors"
@@ -75,30 +70,47 @@
 
         <Transition name="view-fade" mode="out-in">
           <div v-if="activeView === 'time'" key="time" class="space-y-4">
-            <div class="flex items-center space-x-4">
+            <div class="flex items-center justify-between w-full">
               <button
                 @click="activeView = 'weather'"
-                class="flex flex-col items-center justify-center text-center focus:outline-none group"
+                class="flex flex-col items-center text-center focus:outline-none group"
                 title="View detailed weather"
               >
                 <component
                   :is="weatherIconComponent"
-                  class="w-12 h-12 mb-1 text-slate-200 group-hover:text-white transition-colors"
+                  class="w-12 h-12 mb-1 group-hover:text-slate-300 transition-colors"
                 />
-                <p class="text-xs capitalize text-slate-300">
+                <p
+                  class="text-xs capitalize group-hover:text-slate-300 transition-colors"
+                >
                   {{ data.weatherDescription }}
                 </p>
               </button>
-              <div class="flex-1 text-right">
-                <p class="text-6xl font-bold tracking-tight">
-                  {{ currentTime }}
-                </p>
-                <p class="text-lg text-slate-300">{{ currentDate }}</p>
-                <p class="text-sm text-yellow-400 font-semibold mt-1">
-                  {{ data.timeDifference }}
-                </p>
-              </div>
+
+              <button
+                @click="activeView = 'timeTravel'"
+                class="group p-2 -mt-1 text-right"
+                title="Time Travel"
+              >
+                <div class="w-[120px] lg:w-[160px] flex flex-col items-end">
+                  <p
+                    class="text-5xl font-bold tracking-tight text-white group-hover:text-purple-400 transition-colors whitespace-nowrap tabular-nums"
+                  >
+                    {{ currentTime }}
+                  </p>
+
+                  <p class="text-lg text-slate-300 whitespace-nowrap">
+                    {{ currentDate }}
+                  </p>
+                  <p
+                    class="text-sm text-yellow-400 font-semibold mt-1 whitespace-nowrap"
+                  >
+                    {{ data.timeDifference }}
+                  </p>
+                </div>
+              </button>
             </div>
+
             <div
               class="grid grid-cols-2 gap-4 text-center border-t border-slate-700 pt-4"
             >
@@ -261,7 +273,6 @@
 <script setup>
 import { ref, computed, watch, onUnmounted } from "vue";
 import {
-  Hourglass,
   CircleDollarSign,
   Star,
   Globe,
